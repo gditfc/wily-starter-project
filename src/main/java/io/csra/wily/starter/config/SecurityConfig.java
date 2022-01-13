@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@PropertySource(value = { SecurityConfig.PROPERTY_SOURCE_1 })
+@PropertySource(value = {SecurityConfig.PROPERTY_SOURCE_1})
 public class SecurityConfig extends CognitoSecurityConfiguration {
 
     public static final String PROPERTY_SOURCE_1 = "classpath:cognito.properties";

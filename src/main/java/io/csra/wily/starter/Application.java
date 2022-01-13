@@ -11,22 +11,22 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.WebApplicationInitializer;
 
 @Configuration
-@ComponentScan(basePackages = { Application.ALL_PACKAGES})
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
+@ComponentScan(basePackages = {Application.ALL_PACKAGES})
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 public class Application extends SpringBootServletInitializer implements WebApplicationInitializer {
 
-	public static final String NAME = "WilyStarterProject";
-	public static final String ALL_PACKAGES = "io.csra";
+    public static final String NAME = "WilyStarterProject";
+    public static final String ALL_PACKAGES = "io.csra";
 
-	private static Class<Application> applicationClass = Application.class;
+    private static final Class<Application> applicationClass = Application.class;
 
-	public static void main(String[] args) {
-		new SpringApplicationBuilder().sources(applicationClass).bannerMode(Mode.OFF).run(args);
-	}
+    public static void main(String[] args) {
+        new SpringApplicationBuilder().sources(applicationClass).bannerMode(Mode.OFF).run(args);
+    }
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(applicationClass).bannerMode(Mode.OFF);
-	}
+    @Override
+    protected SpringApplicationBuilder configure(final SpringApplicationBuilder application) {
+        return application.sources(applicationClass).bannerMode(Mode.OFF);
+    }
 
 }

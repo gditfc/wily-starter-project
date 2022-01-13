@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false" scan="true" scanPeriod="120 seconds">
-	<contextName>WilyStarterProject</contextName>
+    <contextName>WilyStarterProject</contextName>
 
-	<property name="LOG_HOME" value="/opt/logs" />
-	<property name="APP_NAME" value="wily-starter-project" />
-	
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<encoder>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-16thread] %-5level %-35.35logger{30} - %msg%n</pattern>
-		</encoder>
-	</appender>
+    <property name="LOG_HOME" value="/opt/logs" />
+    <property name="APP_NAME" value="wily-starter-project" />
 
-	<appender name="JsonLogger" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${LOG_HOME}/${APP_NAME}/${APP_NAME}-${HOSTNAME}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<maxFileSize>10MB</maxFileSize>
-			</timeBasedFileNamingAndTriggeringPolicy>
-		</rollingPolicy>
-		<encoder class="net.logstash.logback.encoder.LogstashEncoder" />
-	</appender>
-	
-	<root level="debug">
-		<appender-ref ref="JsonLogger" />
-	</root>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-16thread] %-5level %-35.35logger{30} - %msg%n</pattern>
+        </encoder>
+    </appender>
 
-	<root level="debug">
-	   <!-- Append to the console -->
-		<appender-ref ref="STDOUT" />
-	</root>
+    <appender name="JsonLogger" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/${APP_NAME}/${APP_NAME}-${HOSTNAME}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+    </appender>
 
-	<include resource="org/springframework/boot/logging/logback/base.xml"/>
-	<logger name="org.springframework.web" level="TRACE"/>
-	<logger name="org.emedny" level="INFO" />
-	<logger name="org.jooq" level="DEBUG" />
+    <root level="debug">
+        <appender-ref ref="JsonLogger" />
+    </root>
 
-	<appender name="HipaaAuditAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${LOG_HOME}/HipaaAudit/HipaaAudit-${APP_NAME}-${HOSTNAME}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<maxFileSize>10MB</maxFileSize>
-			</timeBasedFileNamingAndTriggeringPolicy>
-		</rollingPolicy>
-		<encoder>
-			<pattern>%msg%n</pattern>
-		</encoder>
-	</appender>
+    <root level="debug">
+        <!-- Append to the console -->
+        <appender-ref ref="STDOUT" />
+    </root>
 
-	<logger name="HipaaAuditLogger" level="INFO" additivity="false">
-		<appender-ref ref="HipaaAuditAppender"/>
-	</logger>
-	
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <logger name="org.springframework.web" level="TRACE" />
+    <logger name="org.emedny" level="INFO" />
+    <logger name="org.jooq" level="DEBUG" />
+
+    <appender name="HipaaAuditAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/HipaaAudit/HipaaAudit-${APP_NAME}-${HOSTNAME}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="HipaaAuditLogger" level="INFO" additivity="false">
+        <appender-ref ref="HipaaAuditAppender" />
+    </logger>
+
 </configuration>
